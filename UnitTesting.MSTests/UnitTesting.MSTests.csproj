@@ -1,4 +1,4 @@
-<Project Sdk="MSTest.Sdk/3.6.1">
+﻿<Project Sdk="MSTest.Sdk/3.6.1">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -11,5 +11,9 @@
       -->
     <TestingPlatformShowTestsFailure>true</TestingPlatformShowTestsFailure>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UnitTesting\UnitTesting.csproj" />
+  </ItemGroup>
 
 </Project>
