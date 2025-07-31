@@ -29,7 +29,8 @@ namespace UnitTesting.NUnitTests
 			bool isOddNumber = calculator.IsOddNumber(1);
 
 			// Assert
-			ClassicAssert.IsTrue(isOddNumber);
+			ClassicAssert.That(isOddNumber, Is.True);
+			//ClassicAssert.IsTrue(isOddNumber);
 		}
 
 		[Test]
@@ -42,7 +43,8 @@ namespace UnitTesting.NUnitTests
 			bool isOddNumber = calculator.IsOddNumber(2);
 
 			// Assert
-			ClassicAssert.IsFalse(isOddNumber);
+			ClassicAssert.That(isOddNumber, Is.False);
+			//ClassicAssert.IsFalse(isOddNumber);
 		}
 	}
 }
