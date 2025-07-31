@@ -18,5 +18,31 @@ namespace UnitTesting.NUnitTests
 			// Assert
 			ClassicAssert.AreEqual(3, sum);
 		}
+
+		[Test]
+		public void IsOddNumberChecker_InputOddNumber_ReturnTrue()
+		{
+			// Arrange
+			Calculator calculator = new();
+
+			// Act
+			bool isOddNumber = calculator.IsOddNumber(1);
+
+			// Assert
+			ClassicAssert.IsTrue(isOddNumber);
+		}
+
+		[Test]
+		public void IsOddNumberChecker_InputEvenNumber_ReturnFalse()
+		{
+			// Arrange
+			Calculator calculator = new();
+
+			// Act
+			bool isOddNumber = calculator.IsOddNumber(2);
+
+			// Assert
+			ClassicAssert.IsFalse(isOddNumber);
+		}
 	}
 }
