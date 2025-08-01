@@ -51,5 +51,17 @@ namespace UnitTesting.NUnitTests
 			ClassicAssert.That(isOddNumber, Is.False);
 			//ClassicAssert.IsFalse(isOddNumber);
 		}
+
+		[Test]
+		[TestCase(1, ExpectedResult = true)]
+		[TestCase(2, ExpectedResult = false)]
+		public bool IsOddNumberChecker_InputNumber_ReturnTrueIfOdd(int num)
+		{
+			// Arrange
+			Calculator calculator = new();
+
+			// Act & Assert
+			return calculator.IsOddNumber(num);
+		}
 	}
 }
