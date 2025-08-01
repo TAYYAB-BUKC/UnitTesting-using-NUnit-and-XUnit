@@ -6,11 +6,19 @@ namespace UnitTesting.NUnitTests
 	[TestFixture]
 	public class CustomerNUnitTests
 	{
+		private Customer customer;
+		[SetUp]
+		public void Setup()
+		{
+			// Arrange
+			customer = new();
+		}
+
 		[Test]
 		public void GreetWithFullName_InputFirstNameAndLastName_OutputGreetMessage()
 		{
 			// Arrange
-			Customer customer = new Customer();
+			//Customer customer = new Customer();
 
 			// Act
 			customer.GreetWithFullName("Ben", "Spark");
@@ -30,7 +38,7 @@ namespace UnitTesting.NUnitTests
 		public void GreetMessage_OutputGreetMessageIsNull()
 		{
 			// Arrange
-			Customer customer = new Customer();
+			//Customer customer = new Customer();
 
 			// Act
 			//customer.GreetWithFullName("Ben", "Spark");
