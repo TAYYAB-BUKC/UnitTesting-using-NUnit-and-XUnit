@@ -63,5 +63,21 @@ namespace UnitTesting.NUnitTests
 			// Act & Assert
 			return calculator.IsOddNumber(num);
 		}
+
+		[Test]
+		[TestCase(5.4, 10.5)]
+		[TestCase(5.43, 10.53)]
+		[TestCase(5.49, 10.59)]
+		public void Add_InputTwoDouble_GetCorrectAddition(double a, double b)
+		{
+			// Arrange
+			Calculator calculator = new();
+
+			// Act
+			var sum = calculator.Add(a, b);
+
+			// Assert
+			ClassicAssert.AreEqual(15.9, sum, 1);
+		}
 	}
 }
