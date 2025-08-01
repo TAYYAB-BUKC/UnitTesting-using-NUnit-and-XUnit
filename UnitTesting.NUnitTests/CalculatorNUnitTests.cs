@@ -65,19 +65,19 @@ namespace UnitTesting.NUnitTests
 		}
 
 		[Test]
-		[TestCase(5.4, 10.5)]
-		[TestCase(5.43, 10.53)]
-		[TestCase(5.49, 10.59)]
-		public void Add_InputTwoDouble_GetCorrectAddition(double a, double b)
+		[TestCase(5.4, 10.5, ExpectedResult = 15.9)]
+		[TestCase(5.43, 10.53, ExpectedResult = 15.959999999999999)]
+		[TestCase(5.49, 10.59, ExpectedResult = 16.08)]
+		public double Add_InputTwoDouble_GetCorrectAddition(double a, double b)
 		{
 			// Arrange
 			Calculator calculator = new();
 
 			// Act
-			var sum = calculator.Add(a, b);
+			return calculator.Add(a, b);
 
 			// Assert
-			ClassicAssert.AreEqual(15.9, sum, 1);
+			//ClassicAssert.AreEqual(15.9, sum, 1);
 		}
 	}
 }
