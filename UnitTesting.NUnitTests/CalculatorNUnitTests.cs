@@ -20,13 +20,18 @@ namespace UnitTesting.NUnitTests
 		}
 
 		[Test]
-		public void IsOddNumberChecker_InputOddNumber_ReturnTrue()
+		[TestCase(1)]
+		[TestCase(3)]
+		[TestCase(5)]
+		[TestCase(7)]
+		[TestCase(9)]
+		public void IsOddNumberChecker_InputOddNumber_ReturnTrue(int num)
 		{
 			// Arrange
 			Calculator calculator = new();
 
 			// Act
-			bool isOddNumber = calculator.IsOddNumber(1);
+			bool isOddNumber = calculator.IsOddNumber(num);
 
 			// Assert
 			ClassicAssert.That(isOddNumber, Is.True);
