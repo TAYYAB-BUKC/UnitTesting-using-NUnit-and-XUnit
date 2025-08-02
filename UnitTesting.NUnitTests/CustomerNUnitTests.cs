@@ -87,5 +87,16 @@ namespace UnitTesting.NUnitTests
 
 			Assert.That(() => customer.GreetWithFullName("", ""), Throws.ArgumentNullException.With.Message.EqualTo("Value cannot be null. (Parameter 'firstName')"));
 		}
+
+		[Test]
+		public void GreetMessage_InputEmptyFirstName_OutputArgumentNullException_New()
+		{
+			// Arrange
+
+			// Act & Assert
+			ClassicAssert.Throws<ArgumentNullException>(() => customer.GreetWithFullName("", ""));
+
+			Assert.That(() => customer.GreetWithFullName("", ""), Throws.ArgumentNullException);
+		}
 	}
 }
