@@ -79,5 +79,19 @@ namespace UnitTesting.NUnitTests
 			// Assert
 			//ClassicAssert.AreEqual(15.9, sum, 1);
 		}
+
+		[Test]
+		public void GetOddNumbersFromRange_InputRange_OutputValidOddNumbersFromProvidedRange()
+		{
+			// Arrange
+			Calculator calculator = new();
+			List<int> expectedResult = new List<int>() { 5, 7, 9 };
+
+			// Act
+			var actualResult = calculator.GetOddNumbersFromRange(5, 10);
+
+			// Assert
+			Assert.That(actualResult, Is.EquivalentTo(expectedResult));
+		}
 	}
 }
