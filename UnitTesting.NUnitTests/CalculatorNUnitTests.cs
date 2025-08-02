@@ -100,6 +100,16 @@ namespace UnitTesting.NUnitTests
 
 			// Assert
 			Assert.That(actualResult, Is.EquivalentTo(expectedResult));
+			ClassicAssert.AreEqual(actualResult, expectedResult);
+			ClassicAssert.Contains(7, actualResult);
+
+			Assert.That(actualResult, Does.Contain(7));
+			Assert.That(actualResult, Is.Not.Empty);
+			Assert.That(actualResult.Count, Is.EqualTo(3));
+			Assert.That(actualResult, Has.No.Member(6));
+			Assert.That(actualResult, Is.Ordered);
+			//Assert.That(actualResult, Is.Ordered.Descending);
+			Assert.That(actualResult, Is.Unique);
 		}
 	}
 }
