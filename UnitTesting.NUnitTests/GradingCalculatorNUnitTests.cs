@@ -60,5 +60,21 @@ namespace UnitTesting.NUnitTests
 			Assert.That(grade, Is.EqualTo("C"));
 			Assert.That(grade, Is.EqualTo("C").IgnoreCase);
 		}
+
+		[Test]
+		public void GetGrade_InputScoreIs95AndAttendanIs65_OutputBGrade()
+		{
+			// Arrange
+			gradingCalculator.Score = 95;
+			gradingCalculator.AttendancePercentage = 65;
+
+			// Act
+			var grade = gradingCalculator.GetGrade();
+
+			// Assert
+			ClassicAssert.AreEqual("B", grade);
+			Assert.That(grade, Is.EqualTo("B"));
+			Assert.That(grade, Is.EqualTo("B").IgnoreCase);
+		}
 	}
 }
