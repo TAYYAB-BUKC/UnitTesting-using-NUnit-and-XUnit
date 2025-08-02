@@ -18,7 +18,7 @@ namespace UnitTesting.NUnitTests
 		public void Add_InputTwoInt_GetCorrectAddition()
 		{
 			// Arrange
-			Calculator calculator = new();
+			//Calculator calculator = new();
 
 			// Act
 			int sum = calculator.Add(1, 2);
@@ -36,7 +36,7 @@ namespace UnitTesting.NUnitTests
 		public void IsOddNumberChecker_InputOddNumber_ReturnTrue(int num)
 		{
 			// Arrange
-			Calculator calculator = new();
+			//Calculator calculator = new();
 
 			// Act
 			bool isOddNumber = calculator.IsOddNumber(num);
@@ -50,7 +50,7 @@ namespace UnitTesting.NUnitTests
 		public void IsOddNumberChecker_InputEvenNumber_ReturnFalse()
 		{
 			// Arrange
-			Calculator calculator = new();
+			//Calculator calculator = new();
 
 			// Act
 			bool isOddNumber = calculator.IsOddNumber(2);
@@ -66,7 +66,7 @@ namespace UnitTesting.NUnitTests
 		public bool IsOddNumberChecker_InputNumber_ReturnTrueIfOdd(int num)
 		{
 			// Arrange
-			Calculator calculator = new();
+			//Calculator calculator = new();
 
 			// Act & Assert
 			return calculator.IsOddNumber(num);
@@ -79,7 +79,7 @@ namespace UnitTesting.NUnitTests
 		public double Add_InputTwoDouble_GetCorrectAddition(double a, double b)
 		{
 			// Arrange
-			Calculator calculator = new();
+			//Calculator calculator = new();
 
 			// Act
 			return calculator.Add(a, b);
@@ -92,7 +92,7 @@ namespace UnitTesting.NUnitTests
 		public void GetOddNumbersFromRange_InputRange_OutputValidOddNumbersFromProvidedRange()
 		{
 			// Arrange
-			Calculator calculator = new();
+			//Calculator calculator = new();
 			List<int> expectedResult = new List<int>() { 5, 7, 9 };
 
 			// Act
