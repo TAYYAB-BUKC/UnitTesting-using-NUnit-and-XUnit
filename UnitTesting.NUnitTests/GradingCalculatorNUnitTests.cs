@@ -14,7 +14,7 @@ namespace UnitTesting.NUnitTests
 		}
 
 		[Test]
-		public void GetGrade_InputScoreIs95AndAttendanIs90_OutputAGrade()
+		public void GetGrade_InputScoreIs95AndAttendanceIs90_OutputAGrade()
 		{
 			// Arrange
 			gradingCalculator.Score = 95;
@@ -30,7 +30,7 @@ namespace UnitTesting.NUnitTests
 		}
 
 		[Test]
-		public void GetGrade_InputScoreIs85AndAttendanIs90_OutputBGrade()
+		public void GetGrade_InputScoreIs85AndAttendanceIs90_OutputBGrade()
 		{
 			// Arrange
 			gradingCalculator.Score = 85;
@@ -46,7 +46,7 @@ namespace UnitTesting.NUnitTests
 		}
 
 		[Test]
-		public void GetGrade_InputScoreIs65AndAttendanIs90_OutputCGrade()
+		public void GetGrade_InputScoreIs65AndAttendanceIs90_OutputCGrade()
 		{
 			// Arrange
 			gradingCalculator.Score = 65;
@@ -62,7 +62,7 @@ namespace UnitTesting.NUnitTests
 		}
 
 		[Test]
-		public void GetGrade_InputScoreIs95AndAttendanIs65_OutputBGrade()
+		public void GetGrade_InputScoreIs95AndAttendanceIs65_OutputBGrade()
 		{
 			// Arrange
 			gradingCalculator.Score = 95;
@@ -81,7 +81,7 @@ namespace UnitTesting.NUnitTests
 		[TestCase(95, 55)]
 		[TestCase(65, 55)]
 		[TestCase(50, 90)]
-		public void GetGrade_InputScoreAndAttendan_OutputFGrade(int score, int attendance)
+		public void GetGrade_InputScoreAndAttendance_OutputFGrade(int score, int attendance)
 		{
 			// Arrange
 			gradingCalculator.Score = score;
@@ -100,7 +100,7 @@ namespace UnitTesting.NUnitTests
 		[TestCase(95, 55, ExpectedResult = "F")]
 		[TestCase(65, 55, ExpectedResult = "F")]
 		[TestCase(50, 90, ExpectedResult = "F")]
-		public string GetGrade_InputScoreAndAttendan_OutputFGrade_New(int score, int attendance)
+		public string GetGrade_InputScoreAndAttendance_OutputFGrade_New(int score, int attendance)
 		{
 			// Arrange
 			gradingCalculator.Score = score;
@@ -123,7 +123,7 @@ namespace UnitTesting.NUnitTests
 		[TestCase(95, 55, ExpectedResult = "F")]
 		[TestCase(65, 55, ExpectedResult = "F")]
 		[TestCase(50, 90, ExpectedResult = "F")]
-		public string GetGrade_InputScoreAndAttendan_OutputExpectedGrade(int score, int attendance)
+		public string GetGrade_InputScoreAndAttendance_OutputExpectedGrade(int score, int attendance)
 		{
 			// Arrange
 			gradingCalculator.Score = score;
