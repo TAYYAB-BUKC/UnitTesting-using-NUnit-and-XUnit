@@ -98,5 +98,33 @@ namespace UnitTesting.NUnitTests
 
 			Assert.That(() => customer.GreetWithFullName("", ""), Throws.ArgumentNullException);
 		}
+
+		[Test]
+		public void GetCustomerType_InputCutomerWithLessThan100Orders_OutputTypeIsBasicCustomer()
+		{
+			// Arrange
+			customer.OrderTotal = 10;
+
+			// Act 
+			var customerType = customer.GetCustomerDetails();
+
+			//Assert
+			Assert.That(customerType, Is.TypeOf<BasicCustomerType>());
+			Assert.That(customerType, Is.TypeOf(typeof(BasicCustomerType)));
+		}
+
+		[Test]
+		public void GetCustomerType_InputCutomerWithMoreThan100Orders_OutputTypeIsPlatinumCustomer()
+		{
+			// Arrange
+			customer.OrderTotal = 210;
+
+			// Act 
+			var customerType = customer.GetCustomerDetails();
+
+			//Assert
+			Assert.That(customerType, Is.TypeOf<PlatinumCustomerType>());
+			Assert.That(customerType, Is.TypeOf(typeof(PlatinumCustomerType)));
+		}
 	}
 }
