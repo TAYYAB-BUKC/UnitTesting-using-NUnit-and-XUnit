@@ -6,6 +6,14 @@ namespace UnitTesting.NUnitTests
 	[TestFixture]
 	public class CalculatorNUnitTests
 	{
+		private Calculator calculator;
+		[SetUp]
+		public void Setup()
+		{
+			// Arrange
+			calculator = new();
+		}
+
 		[Test]
 		public void Add_InputTwoInt_GetCorrectAddition()
 		{
