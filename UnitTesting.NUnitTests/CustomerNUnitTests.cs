@@ -24,14 +24,17 @@ namespace UnitTesting.NUnitTests
 			customer.GreetWithFullName("Ben", "Spark");
 
 			// Assert
-			ClassicAssert.AreEqual(customer.GreetMessage, "Hello, Ben Spark");
-			Assert.That(customer.GreetMessage, Is.EqualTo("Hello, Ben Spark"));
+			Assert.Multiple(() =>
+			{
+				ClassicAssert.AreEqual(customer.GreetMessage, "Hello, Ben Spark");
+				Assert.That(customer.GreetMessage, Is.EqualTo("Hello, Ben Spark"));
 
-			Assert.That(customer.GreetMessage, Does.StartWith("Hello"));
-			Assert.That(customer.GreetMessage, Does.EndWith("Spark"));
-			Assert.That(customer.GreetMessage, Does.Contain("Ben"));
-			Assert.That(customer.GreetMessage, Does.Match("[A-Z]{1}[a-z]+, [A-Z]{1}[a-z]+ [A-Z]{1}[a-z]+"));
-			Assert.That(customer.GreetMessage, Does.Contain("ben spark").IgnoreCase);
+				Assert.That(customer.GreetMessage, Does.StartWith("Hello"));
+				Assert.That(customer.GreetMessage, Does.EndWith("Spark"));
+				Assert.That(customer.GreetMessage, Does.Contain("Ben"));
+				Assert.That(customer.GreetMessage, Does.Match("[A-Z]{1}[a-z]+, [A-Z]{1}[a-z]+ [A-Z]{1}[a-z]+"));
+				Assert.That(customer.GreetMessage, Does.Contain("ben spark").IgnoreCase);
+			});
 		}
 
 		[Test]
