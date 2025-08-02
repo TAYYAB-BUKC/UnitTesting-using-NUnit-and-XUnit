@@ -47,5 +47,16 @@ namespace UnitTesting.NUnitTests
 			ClassicAssert.IsNull(customer.GreetMessage);
 			Assert.That(customer.GreetMessage, Is.Null);
 		}
+
+		[Test]
+		public void DiscountCheck_OutputDiscountShouldBeIn10To20Range()
+		{
+			// Arrange
+
+			// Act
+
+			// Assert
+			Assert.That(customer.Discount, Is.InRange(10, 20));
+		}
 	}
 }
