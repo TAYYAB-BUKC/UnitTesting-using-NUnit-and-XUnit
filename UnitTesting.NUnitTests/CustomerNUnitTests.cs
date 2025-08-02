@@ -61,5 +61,19 @@ namespace UnitTesting.NUnitTests
 			// Assert
 			Assert.That(customer.Discount, Is.InRange(10, 20));
 		}
+
+		[Test]
+		public void GreetMessage_InputFirstNameOnly_OutputGreetMessageWithFirstNameOnly()
+		{
+			// Arrange
+
+			// Act
+			customer.GreetWithFullName("OnlyBen", "");
+
+			// Assert
+			ClassicAssert.IsNotNull(customer.GreetMessage);
+			Assert.That(customer.GreetMessage, Is.Not.Null);
+			ClassicAssert.IsFalse(string.IsNullOrEmpty(customer.GreetMessage));
+		}
 	}
 }
