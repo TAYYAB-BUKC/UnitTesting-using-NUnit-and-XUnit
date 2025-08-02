@@ -7,6 +7,11 @@
 
 		public string GreetWithFullName(string firstName, string lastName)
 		{
+			if (string.IsNullOrWhiteSpace(firstName))
+			{
+				throw new ArgumentNullException(nameof(firstName));
+			}
+
 			GreetMessage = $"Hello, {firstName} {lastName}";
 			Discount = 20;
 			return GreetMessage;
