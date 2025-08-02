@@ -84,6 +84,8 @@ namespace UnitTesting.NUnitTests
 			// Act & Assert
 			var exception = ClassicAssert.Throws<ArgumentNullException>(()=> customer.GreetWithFullName("", "Spark"));
 			ClassicAssert.AreEqual("Value cannot be null. (Parameter 'firstName')", exception.Message);
+
+			Assert.That(() => customer.GreetWithFullName("", ""), Throws.ArgumentNullException.With.Message.EqualTo("Value cannot be null. (Parameter 'firstName')"));
 		}
 	}
 }
