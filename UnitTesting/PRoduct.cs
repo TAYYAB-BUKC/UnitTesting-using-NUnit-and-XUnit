@@ -8,7 +8,7 @@
 
 		public double GetPrice(Customer customer)
 		{
-			if(customer.GetCustomerDetails() == default(PlatinumCustomerType))
+			if (customer.GetCustomerDetails() is PlatinumCustomerType)
 			{
 				return Price * 0.8;
 			}
