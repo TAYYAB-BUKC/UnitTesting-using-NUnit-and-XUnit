@@ -10,7 +10,7 @@ namespace UnitTesting.NUnitTests
 		[SetUp]
 		public void ArrangeSetup()
 		{
-			bankAccount = new(new LogBook());
+			bankAccount = new(new LogBookFaker());
 		}
 
 		[Test]
