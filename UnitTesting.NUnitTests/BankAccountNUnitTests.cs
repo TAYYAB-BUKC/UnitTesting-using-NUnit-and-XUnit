@@ -1,5 +1,6 @@
-﻿using NUnit.Framework;
-using UnitTesting.Services;
+﻿using Moq;
+using NUnit.Framework;
+using UnitTesting.Services.Interfaces;
 
 namespace UnitTesting.NUnitTests
 {
@@ -10,7 +11,9 @@ namespace UnitTesting.NUnitTests
 		[SetUp]
 		public void ArrangeSetup()
 		{
-			bankAccount = new(new LogBookFaker());
+			//bankAccount = new(new LogBookFaker());
+			var moq = new Mock<ILogBook>();
+			bankAccount = new(moq.Object);
 		}
 
 		[Test]
