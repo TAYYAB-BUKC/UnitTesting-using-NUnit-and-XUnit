@@ -25,7 +25,7 @@ namespace UnitTesting.NUnitTests
 			// Assert
 			Assert.That(series, Is.Not.Empty);
 			Assert.That(series, Is.Ordered);
-			Assert.That(series, Is.All.Member(0));
+			Assert.That(series, Has.Member(0));
 		}
 	}
 }
