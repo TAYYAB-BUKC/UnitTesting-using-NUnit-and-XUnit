@@ -30,17 +30,20 @@ namespace UnitTesting.NUnitTests
 		}
 
 		[Test]
-		public void WithDraw_InputWithDraw100With200Balace_OutputIsTrue()
+		[TestCase(200, 100)]
+		[TestCase(200, 150)]
+		[TestCase(200, 300)]
+		public void WithDraw_InputWithDraw100With200Balace_OutputIsTrue(int balance, int withdrawalAmount)
 		{
 			// Arrange
-			bankAccount.Balance = 200;
 			var mockLogBook = new Mock<ILogBook>();
 			mockLogBook.Setup(lb => lb.LogToDatabase(It.IsAny<string>())).Returns(true);
-			mockLogBook.Setup(lb => lb.LogBalanceAfterWithdrawal(It.IsAny<decimal>())).Returns(true);
+			mockLogBook.Setup(lb => lb.LogBalanceAfterWithdrawal(It.Is<decimal>(c => c > 0))).Returns(true);
 			bankAccount = new(mockLogBook.Object);
+			bankAccount.Balance = balance;
 
 			// Act
-			var result = bankAccount.WithDraw(100);
+			var result = bankAccount.WithDraw(withdrawalAmount);
 
 			// Assert
 			Assert.That(result, Is.True);
