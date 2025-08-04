@@ -29,10 +29,11 @@ namespace UnitTesting
 		{
 			if(Balance <= amount)
 			{
+				_logBook.LogToDatabase($"Withdrawal invoked with amount: {amount}");
 				Balance -= amount;
-				return true;
+				return _logBook.LogBalanceAfterWithdrawal(Balance);
 			}
-			return false;
+			return _logBook.LogBalanceAfterWithdrawal(Balance - amount);
 		}
 	}
 }
