@@ -100,5 +100,22 @@ namespace UnitTesting.NUnitTests
 			Assert.That(mockLogBook.Object.LogAndOutputMessage("Ben", out result), Is.True);
 			Assert.That(result, Is.EqualTo(finalMessage).IgnoreCase);
 		}
+
+		[Test]
+		public void LogWithRefObject_InputIsRefOfCustomer_OutputIsTrue()
+		{
+			// Arrange
+			var mockLogBook = new Mock<ILogBook>();
+			Customer customer = new();
+			Customer customerNotUsed = new();
+
+			mockLogBook.Setup(lb => lb.LogWithRefObject(ref customer)).Returns(true);
+
+			// Act
+
+			// Assert
+			Assert.That(mockLogBook.Object.LogWithRefObject(ref customer), Is.True);
+			Assert.That(mockLogBook.Object.LogWithRefObject(ref customerNotUsed), Is.False);
+		}
 	}
 }
