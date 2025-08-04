@@ -4,6 +4,9 @@ namespace UnitTesting.Services
 {
 	public class LogBook : ILogBook
 	{
+		public int LogSeverity { get; set; }
+		public string LogType { get; set; }
+
 		public void Log(string message)
 		{
 			Console.WriteLine(message);

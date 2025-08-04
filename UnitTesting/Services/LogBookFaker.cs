@@ -4,6 +4,9 @@ namespace UnitTesting.Services
 {
 	public class LogBookFaker : ILogBook
 	{
+		public int LogSeverity { get; set; }
+		public string LogType { get; set; }
+
 		public void Log(string message)
 		{
 			
