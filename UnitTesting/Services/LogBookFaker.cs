@@ -8,5 +8,15 @@ namespace UnitTesting.Services
 		{
 			
 		}
+
+		public bool LogBalanceAfterWithdrawal(int balance)
+		{
+			return true;
+		}
+
+		public bool LogToDatabase(string message)
+		{
+			return true;
+		}
 	}
 }
