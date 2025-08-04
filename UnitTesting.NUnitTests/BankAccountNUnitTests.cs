@@ -173,5 +173,23 @@ namespace UnitTesting.NUnitTests
 			mockLogBook.Object.LogAndReturnMessage("Ben");
 			Assert.That(counter, Is.EqualTo(10));
 		}
+
+		[Test]
+		public void MOQVerification_NoInput_OutputVerification()
+		{
+			// Arrange
+			var mockLogBook = new Mock<ILogBook>();
+			bankAccount = new(mockLogBook.Object);
+
+			// Act
+			bankAccount.Deposit(100);
+
+			// Assert
+			Assert.That(bankAccount.GetBalance, Is.EqualTo(100));
+			mockLogBook.Verify(lb => lb.Log(It.IsAny<string>()), Times.Exactly(2));
+			mockLogBook.Verify(lb => lb.Log("Deposit invoked"), Times.Once);
+			mockLogBook.VerifySet(lb => lb.LogSeverity = 101, Times.Once);
+			mockLogBook.VerifyGet(lb => lb.LogSeverity, Times.Once);
+		}
 	}
 }
