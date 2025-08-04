@@ -9,6 +9,11 @@ namespace UnitTesting.Services
 			
 		}
 
+		public string LogAndReturnMessage(string message)
+		{
+			return message;
+		}
+
 		public bool LogBalanceAfterWithdrawal(decimal balance)
 		{
 			return true;

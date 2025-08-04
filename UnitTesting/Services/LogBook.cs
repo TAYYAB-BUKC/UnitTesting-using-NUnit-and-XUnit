@@ -9,6 +9,12 @@ namespace UnitTesting.Services
 			Console.WriteLine(message);
 		}
 
+		public string LogAndReturnMessage(string message)
+		{
+			Console.WriteLine(message);
+			return message;
+		}
+
 		public bool LogBalanceAfterWithdrawal(decimal balance)
 		{
 			if (balance >= 0)
