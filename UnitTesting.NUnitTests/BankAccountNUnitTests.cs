@@ -69,5 +69,20 @@ namespace UnitTesting.NUnitTests
 			// Assert
 			Assert.That(result, Is.False);
 		}
+
+		[Test]
+		public void LogAndReturnMessage_NoInput_OutputIsMessageItself()
+		{
+			// Arrange
+			string desiredOutput = "Hello";
+			var mockLogBook = new Mock<ILogBook>();
+			mockLogBook.Setup(lb => lb.LogAndReturnMessage(It.IsAny<string>())).Returns((string message) => message);
+
+			// Act
+			var result = mockLogBook.Object.LogAndReturnMessage("hello");
+
+			// Assert
+			Assert.That(result, Is.EqualTo(desiredOutput).IgnoreCase);
+		}
 	}
 }
