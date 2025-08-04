@@ -58,7 +58,8 @@ namespace UnitTesting.NUnitTests
 			var mockLogBook = new Mock<ILogBook>();
 			mockLogBook.Setup(lb => lb.LogToDatabase(It.IsAny<string>())).Returns(true);
 			mockLogBook.Setup(lb => lb.LogBalanceAfterWithdrawal(It.Is<decimal>(c => c > 0))).Returns(true);
-			mockLogBook.Setup(lb => lb.LogBalanceAfterWithdrawal(It.Is<decimal>(c => c < 0))).Returns(false);
+			//mockLogBook.Setup(lb => lb.LogBalanceAfterWithdrawal(It.Is<decimal>(c => c < 0))).Returns(false);
+			mockLogBook.Setup(lb => lb.LogBalanceAfterWithdrawal(It.IsInRange<decimal>(int.MinValue, -1, Moq.Range.Inclusive))).Returns(false);
 			bankAccount = new(mockLogBook.Object);
 			bankAccount.Balance = balance;
 
