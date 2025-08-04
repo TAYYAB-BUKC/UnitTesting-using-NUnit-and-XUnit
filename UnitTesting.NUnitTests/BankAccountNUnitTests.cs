@@ -28,5 +28,22 @@ namespace UnitTesting.NUnitTests
 			Assert.That(result, Is.True);
 			Assert.That(bankAccount.GetBalance, Is.EqualTo(100));
 		}
+
+		[Test]
+		public void WithDraw_InputWithDraw100With200Balace_OutputIsTrue()
+		{
+			// Arrange
+			bankAccount.Balance = 200;
+			var mockLogBook = new Mock<ILogBook>();
+			mockLogBook.Setup(lb => lb.LogToDatabase(It.IsAny<string>())).Returns(true);
+			mockLogBook.Setup(lb => lb.LogBalanceAfterWithdrawal(It.IsAny<decimal>())).Returns(true);
+			bankAccount = new(mockLogBook.Object);
+
+			// Act
+			var result = bankAccount.WithDraw(100);
+
+			// Assert
+			Assert.That(result, Is.True);
+		}
 	}
 }
