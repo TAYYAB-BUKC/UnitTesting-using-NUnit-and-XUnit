@@ -1,6 +1,8 @@
-﻿namespace UnitTesting
+﻿using UnitTesting.Services.Interfaces;
+
+namespace UnitTesting
 {
-	public class Customer
+	public class Customer : ICustomer
 	{
 		public int Discount { get; set; } = 10;
 		public string? GreetMessage { get; set; }
