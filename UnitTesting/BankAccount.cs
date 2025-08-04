@@ -20,7 +20,10 @@ namespace UnitTesting
 
 		public bool Deposit(decimal amount)
 		{
+			_logBook.Log("Deposit invoked");
 			_logBook.Log($"Deposit invoked with amount {amount}");
+			var oldLogSeverity = _logBook.LogSeverity;
+			_logBook.LogSeverity = 101;
 			Balance += amount;
 			return true;
 		}
