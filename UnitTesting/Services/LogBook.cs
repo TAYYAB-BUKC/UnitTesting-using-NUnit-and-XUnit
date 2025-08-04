@@ -9,7 +9,7 @@ namespace UnitTesting.Services
 			Console.WriteLine(message);
 		}
 
-		public bool LogBalanceAfterWithdrawal(int balance)
+		public bool LogBalanceAfterWithdrawal(decimal balance)
 		{
 			if (balance >= 0)
 			{

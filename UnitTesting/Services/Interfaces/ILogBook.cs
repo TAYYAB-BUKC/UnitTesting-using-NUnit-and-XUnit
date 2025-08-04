@@ -4,6 +4,6 @@
 	{
 		void Log(string message);
 		bool LogToDatabase(string message);
-		bool LogBalanceAfterWithdrawal(int balance);
+		bool LogBalanceAfterWithdrawal(decimal balance);
 	}
 }

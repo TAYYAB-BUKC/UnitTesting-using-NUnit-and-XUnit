@@ -9,7 +9,7 @@ namespace UnitTesting.Services
 			
 		}
 
-		public bool LogBalanceAfterWithdrawal(int balance)
+		public bool LogBalanceAfterWithdrawal(decimal balance)
 		{
 			return true;
 		}
