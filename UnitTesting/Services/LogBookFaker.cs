@@ -29,5 +29,10 @@ namespace UnitTesting.Services
 		{
 			return true;
 		}
+
+		public bool LogWithRefObject(ref Customer customer)
+		{
+			return true;
+		}
 	}
 }

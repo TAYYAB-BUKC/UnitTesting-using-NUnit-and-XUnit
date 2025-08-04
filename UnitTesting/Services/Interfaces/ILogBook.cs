@@ -7,5 +7,6 @@
 		bool LogBalanceAfterWithdrawal(decimal balance);
 		string LogAndReturnMessage(string message);
 		bool LogAndOutputMessage(string message, out string finalMessage);
+		bool LogWithRefObject(ref Customer customer);
 	}
 }

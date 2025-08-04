@@ -9,6 +9,11 @@ namespace UnitTesting.Services
 			Console.WriteLine(message);
 		}
 
+		public bool LogWithRefObject(ref Customer customer)
+		{
+			return true;
+		}
+
 		public bool LogAndOutputMessage(string message, out string finalMessage)
 		{
 			finalMessage = $"Hello, {message}";
