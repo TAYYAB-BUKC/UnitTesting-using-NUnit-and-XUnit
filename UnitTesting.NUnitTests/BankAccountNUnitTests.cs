@@ -84,5 +84,21 @@ namespace UnitTesting.NUnitTests
 			// Assert
 			Assert.That(result, Is.EqualTo(desiredOutput).IgnoreCase);
 		}
+
+		[Test]
+		public void LogAndOutputMessage_InputIsBen_OutputIsHelloBenWithTrue()
+		{
+			// Arrange
+			string finalMessage = "hello";
+			string result = string.Empty;
+			var mockLogBook = new Mock<ILogBook>();
+			mockLogBook.Setup(lb => lb.LogAndOutputMessage(It.IsAny<string>(), out finalMessage)).Returns(true);
+
+			// Act
+
+			// Assert
+			Assert.That(mockLogBook.Object.LogAndOutputMessage("Ben", out result), Is.True);
+			Assert.That(result, Is.EqualTo(finalMessage).IgnoreCase);
+		}
 	}
 }
