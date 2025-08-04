@@ -123,14 +123,17 @@ namespace UnitTesting.NUnitTests
 		{
 			// Arrange
 			var mockLogBook = new Mock<ILogBook>();
-			mockLogBook.Setup(lb => lb.LogSeverity).Returns(15);
-			mockLogBook.Setup(lb => lb.LogType).Returns("Warning");
+			mockLogBook.SetupAllProperties();
+			//mockLogBook.Setup(lb => lb.LogSeverity).Returns(15);
+			//mockLogBook.Setup(lb => lb.LogType).Returns("Warning");
+			mockLogBook.Object.LogSeverity = 20;
+			mockLogBook.Object.LogType = "Warning";
 
 			// Act
 
 			// Assert
 			Assert.That(mockLogBook.Object.LogType, Is.EqualTo("Warning"));
-			Assert.That(mockLogBook.Object.LogSeverity, Is.EqualTo(15));
+			Assert.That(mockLogBook.Object.LogSeverity, Is.EqualTo(20));
 		}
 	}
 }
