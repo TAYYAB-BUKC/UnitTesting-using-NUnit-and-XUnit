@@ -32,7 +32,6 @@ namespace UnitTesting.NUnitTests
 		[Test]
 		[TestCase(200, 100)]
 		[TestCase(200, 150)]
-		[TestCase(200, 300)]
 		public void WithDraw_InputWithDraw100With200Balace_OutputIsTrue(int balance, int withdrawalAmount)
 		{
 			// Arrange
