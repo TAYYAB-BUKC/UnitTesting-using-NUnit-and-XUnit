@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
+using UnitTesting.Services.Interfaces;
 
 namespace UnitTesting.NUnitTests
 {
@@ -24,9 +26,20 @@ namespace UnitTesting.NUnitTests
 
 			// Assert
 			Assert.That(result, Is.EqualTo(40));
+		}
 
+		[Test]
+		public void GetProductPriceWithMOQAbuse_InputPlatinumCustomer_OutputPriceWith80PercentDiscount()
+		{
+			// Arrange
+			var moq = new Mock<ICustomer>();
+			moq.Setup(m => m.OrderTotal).Returns(110);
 
+			// Act
+			var result = product.GetPrice(moq.Object);
 
+			// Assert
+			Assert.That(result, Is.EqualTo(40));
 		}
 	}
 }
