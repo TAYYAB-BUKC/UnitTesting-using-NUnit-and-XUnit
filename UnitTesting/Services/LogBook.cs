@@ -9,6 +9,12 @@ namespace UnitTesting.Services
 			Console.WriteLine(message);
 		}
 
+		public bool LogAndOutputMessage(string message, out string finalMessage)
+		{
+			finalMessage = $"Hello, {message}";
+			return true;
+		}
+
 		public string LogAndReturnMessage(string message)
 		{
 			Console.WriteLine(message);

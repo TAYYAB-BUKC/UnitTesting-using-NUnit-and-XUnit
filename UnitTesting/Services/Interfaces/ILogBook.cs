@@ -6,5 +6,6 @@
 		bool LogToDatabase(string message);
 		bool LogBalanceAfterWithdrawal(decimal balance);
 		string LogAndReturnMessage(string message);
+		bool LogAndOutputMessage(string message, out string finalMessage);
 	}
 }

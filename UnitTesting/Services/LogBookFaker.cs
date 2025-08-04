@@ -9,6 +9,12 @@ namespace UnitTesting.Services
 			
 		}
 
+		public bool LogAndOutputMessage(string message, out string finalMessage)
+		{
+			finalMessage = message;
+			return true;
+		}
+
 		public string LogAndReturnMessage(string message)
 		{
 			return message;
