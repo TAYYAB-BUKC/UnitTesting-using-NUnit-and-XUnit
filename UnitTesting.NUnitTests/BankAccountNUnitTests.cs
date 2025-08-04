@@ -117,5 +117,20 @@ namespace UnitTesting.NUnitTests
 			Assert.That(mockLogBook.Object.LogWithRefObject(ref customer), Is.True);
 			Assert.That(mockLogBook.Object.LogWithRefObject(ref customerNotUsed), Is.False);
 		}
+
+		[Test]
+		public void LogSeverityAndLogType_InputIsSetProperties_OutputIsSettedProperties()
+		{
+			// Arrange
+			var mockLogBook = new Mock<ILogBook>();
+			mockLogBook.Setup(lb => lb.LogSeverity).Returns(15);
+			mockLogBook.Setup(lb => lb.LogType).Returns("Warning");
+
+			// Act
+
+			// Assert
+			Assert.That(mockLogBook.Object.LogType, Is.EqualTo("Warning"));
+			Assert.That(mockLogBook.Object.LogSeverity, Is.EqualTo(15));
+		}
 	}
 }
