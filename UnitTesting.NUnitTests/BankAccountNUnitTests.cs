@@ -135,5 +135,43 @@ namespace UnitTesting.NUnitTests
 			Assert.That(mockLogBook.Object.LogType, Is.EqualTo("Warning"));
 			Assert.That(mockLogBook.Object.LogSeverity, Is.EqualTo(20));
 		}
+
+		[Test]
+		public void MOQCallback_NoInput_ImplementedOutput()
+		{
+			// Arrange
+			string initialInput = "Hello,";
+			int counter = 8;
+			var mockLogBook = new Mock<ILogBook>();
+			mockLogBook.SetupAllProperties();
+			//mockLogBook.Setup(lb => lb.LogSeverity).Returns(15);
+			//mockLogBook.Setup(lb => lb.LogType).Returns("Warning");
+			mockLogBook.Setup(lb => lb.LogToDatabase(It.IsAny<string>())).Returns(true)
+					   .Callback((string input) =>
+					   {
+						   initialInput += $" {input}";
+					   });
+
+			// Act
+			mockLogBook.Object.LogToDatabase("Ben");
+
+			// Assert
+			Assert.That(initialInput, Is.EqualTo("Hello, Ben"));
+
+
+			Assert.That(counter, Is.EqualTo(8));
+
+			mockLogBook.Setup(lb => lb.LogAndReturnMessage(It.IsAny<string>())).Returns("true")
+					   .Callback(() =>
+					   {
+						   counter++;
+					   });
+
+			mockLogBook.Object.LogAndReturnMessage("Ben");
+			Assert.That(counter, Is.EqualTo(9));
+
+			mockLogBook.Object.LogAndReturnMessage("Ben");
+			Assert.That(counter, Is.EqualTo(10));
+		}
 	}
 }
