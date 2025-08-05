@@ -1,4 +1,6 @@
 ﻿using Bongo.Core.Services.IServices;
+using Bongo.Models.Model;
+using Bongo.Models.Model.VM;
 using Bongo.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -43,6 +45,25 @@ namespace Bongo.Web.Tests
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That((result as ViewResult).ViewName, Is.EqualTo("Book"));
+		}
+
+		[Test]
+		public void Book_InputIsDummyRequestWithNoRoomAvailable_OutputIsViewDataError()
+		{
+			// Arrange
+			_studyRoomBookingService.Setup(x => x.BookStudyRoom(It.IsAny<StudyRoomBooking>()))
+									.Returns(new StudyRoomBookingResult()
+									{
+										Code = StudyRoomBookingCode.NoRoomAvailable
+									});
+
+			// Act
+			var result = _roomBookingController.Book(null);
+
+			// Assert
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result, Is.InstanceOf<ViewResult>());
+			Assert.That((result as ViewResult).ViewData["Error"], Is.EqualTo("No Study Room available for selected date"));
 		}
 	}
 }
