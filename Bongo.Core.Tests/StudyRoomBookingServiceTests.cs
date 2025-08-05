@@ -22,5 +22,17 @@ namespace Bongo.Core.Tests
 				_studyRoomRepository.Object
 			);
 		}
+
+		[Test]
+		public void GetAllBooking_NoInput_OutputIsMethodCalled()
+		{
+			// Arrange
+
+			// Act
+			studyRoomBookingService.GetAllBooking();
+
+			// Assert
+			_studyRoomBookingRepository.Verify(r => r.GetAll(null), Times.Once);
+		}
 	}
 }
