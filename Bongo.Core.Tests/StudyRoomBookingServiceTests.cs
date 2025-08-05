@@ -21,12 +21,15 @@ namespace Bongo.Core.Tests
 			_studyRoomBookingRepository = new Mock<IStudyRoomBookingRepository>();
 			_studyRoomRepository = new Mock<IStudyRoomRepository>();
 
-			availableRooms.Add(new StudyRoom
+			availableRooms = new List<StudyRoom>()
 			{
+				new StudyRoom
+				{
 				Id = 1,
 				RoomName = "Michigan",
 				RoomNumber = "001"
-			});
+				}
+			};
 
 			_studyRoomRepository.Setup(r => r.GetAll()).Returns(availableRooms);
 			studyRoomBookingService = new StudyRoomBookingService(
@@ -41,8 +44,6 @@ namespace Bongo.Core.Tests
 				LastName = "1",
 				Email = "test1@test.com",
 			};
-
-
 		}
 
 		[Test]
