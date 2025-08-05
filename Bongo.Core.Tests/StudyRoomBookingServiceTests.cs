@@ -1,6 +1,7 @@
 ﻿using Bongo.Core.Services;
 using Bongo.DataAccess.Repository.IRepository;
 using Bongo.Models.Model;
+using Bongo.Models.Model.VM;
 using Moq;
 using NUnit.Framework;
 
@@ -109,6 +110,23 @@ namespace Bongo.Core.Tests
 
 			// Assert
 			Assert.That(result, Is.Not.Null);
+			Assert.That(result.FirstName, Is.EqualTo(request.FirstName));
+			Assert.That(result.LastName, Is.EqualTo(request.LastName));
+			Assert.That(result.Email, Is.EqualTo(request.Email));
+			Assert.That(result.Date, Is.EqualTo(request.Date));
+		}
+
+		[Test]
+		public void BookStudyRoom_InputIsAValidRequest_OutputIsSuccessResultCode()
+		{
+			// Arrange
+
+			// Act
+			var result = studyRoomBookingService.BookStudyRoom(request);
+
+			// Assert
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.Code, Is.EqualTo(StudyRoomBookingCode.Success));
 			Assert.That(result.FirstName, Is.EqualTo(request.FirstName));
 			Assert.That(result.LastName, Is.EqualTo(request.LastName));
 			Assert.That(result.Email, Is.EqualTo(request.Email));
