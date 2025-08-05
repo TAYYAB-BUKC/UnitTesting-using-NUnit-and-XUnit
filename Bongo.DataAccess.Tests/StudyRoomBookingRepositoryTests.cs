@@ -99,7 +99,7 @@ namespace Bongo.DataAccess.Tests
 			actualResults = _studyRoomBookingRepository.GetAll(null).ToList();
 
 			// Assert
-			CollectionAssert.AreEqual(expectedResults.Select(x => x.BookingId), actualResults.Select(x => x.BookingId));
+			CollectionAssert.AreEqual(expectedResults, actualResults, new StudyRoomBookingComparer());
 		}
 	}
 }
