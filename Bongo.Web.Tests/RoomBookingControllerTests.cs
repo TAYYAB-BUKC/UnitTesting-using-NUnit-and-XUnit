@@ -1,5 +1,6 @@
 ﻿using Bongo.Core.Services.IServices;
 using Bongo.Web.Controllers;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 
@@ -28,6 +29,20 @@ namespace Bongo.Web.Tests
 
 			// Assert
 			_studyRoomBookingService.Verify(x => x.GetAllBooking(), Times.Once);
+		}
+
+		[Test]
+		public void Book_InputIsDummyRequestWithModelError_OutputIsBookViewReturned()
+		{
+			// Arrange
+			_roomBookingController.ModelState.AddModelError("test", "test");
+
+			// Act
+			var result = _roomBookingController.Book(null);
+
+			// Assert
+			Assert.That(result, Is.Not.Null);
+			Assert.That((result as ViewResult).ViewName, Is.EqualTo("Book"));
 		}
 	}
 }
