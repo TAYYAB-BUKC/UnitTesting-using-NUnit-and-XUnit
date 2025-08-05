@@ -98,5 +98,21 @@ namespace Bongo.Core.Tests
 			Assert.That(newBooking.StudyRoomId, Is.EqualTo(availableRooms.FirstOrDefault().Id));
 			Assert.That(newBooking.StudyRoomId, Is.EqualTo(1));
 		}
+
+		[Test]
+		public void BookStudyRoom_InputIsAValidRequest_OutputIsResultValuesMatchedWithRequest()
+		{
+			// Arrange
+
+			// Act
+			var result = studyRoomBookingService.BookStudyRoom(request);
+
+			// Assert
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.FirstName, Is.EqualTo(request.FirstName));
+			Assert.That(result.LastName, Is.EqualTo(request.LastName));
+			Assert.That(result.Email, Is.EqualTo(request.Email));
+			Assert.That(result.Date, Is.EqualTo(request.Date));
+		}
 	}
 }
