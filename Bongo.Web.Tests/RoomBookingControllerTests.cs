@@ -17,5 +17,17 @@ namespace Bongo.Web.Tests
 			_studyRoomBookingService = new Mock<IStudyRoomBookingService>();
 			_roomBookingController = new RoomBookingController(_studyRoomBookingService.Object);
 		}
+
+		[Test]
+		public void Index_NoInput_OutputIsGetAllBookingInvoked()
+		{
+			// Arrange
+
+			// Act
+			_roomBookingController.Index();
+
+			// Assert
+			_studyRoomBookingService.Verify(x => x.GetAllBooking(), Times.Once);
+		}
 	}
 }
