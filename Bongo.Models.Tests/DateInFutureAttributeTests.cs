@@ -30,5 +30,17 @@ namespace Bongo.Models.Tests
 			// Act & Assert
 			return dateInFutureAttribute.IsValid(DateTime.Now.AddSeconds(seconds));
 		}
+
+		[Test]
+		public void DateValidator_NoInput_OutputIsErrorMessage()
+		{
+			// Arrange
+			DateInFutureAttribute dateInFutureAttribute = new DateInFutureAttribute();
+
+			// Act
+
+			// Assert
+			Assert.That("Date must be in the future", Is.EqualTo(dateInFutureAttribute.ErrorMessage));
+		}
 	}
 }
