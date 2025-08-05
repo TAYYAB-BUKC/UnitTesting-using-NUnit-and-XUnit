@@ -140,6 +140,13 @@ namespace Bongo.Core.Tests
 
 			// Act
 			var result = studyRoomBookingService.BookStudyRoom(request);
+			//var result1 = studyRoomBookingService.BookStudyRoom(new StudyRoomBooking
+			//{
+			//	FirstName="Test",
+			//	LastName="2",
+			//	Email = "test2@test.com",
+			//});
+			availableRooms.Clear();
 			var result1 = studyRoomBookingService.BookStudyRoom(request);
 
 			// Asserts for result
