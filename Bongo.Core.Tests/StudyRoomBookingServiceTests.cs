@@ -132,5 +132,32 @@ namespace Bongo.Core.Tests
 			Assert.That(result.Email, Is.EqualTo(request.Email));
 			Assert.That(result.Date, Is.EqualTo(request.Date));
 		}
+
+		[Test]
+		public void BookStudyRoom_InputIsTwoValidRequests_OutputIsNoRoomAvailableResultCode()
+		{
+			// Arrange
+
+			// Act
+			var result = studyRoomBookingService.BookStudyRoom(request);
+			var result1 = studyRoomBookingService.BookStudyRoom(request);
+
+			// Asserts for result
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.Code, Is.EqualTo(StudyRoomBookingCode.Success));
+			Assert.That(result.FirstName, Is.EqualTo(request.FirstName));
+			Assert.That(result.LastName, Is.EqualTo(request.LastName));
+			Assert.That(result.Email, Is.EqualTo(request.Email));
+			Assert.That(result.Date, Is.EqualTo(request.Date));
+
+			// Asserts for result1
+			Assert.That(result1, Is.Not.Null);
+			Assert.That(result1.Code, Is.EqualTo(StudyRoomBookingCode.NoRoomAvailable));
+			Assert.That(result1.FirstName, Is.EqualTo(request.FirstName));
+			Assert.That(result1.LastName, Is.EqualTo(request.LastName));
+			Assert.That(result1.Email, Is.EqualTo(request.Email));
+			Assert.That(result1.Date, Is.EqualTo(request.Date));
+
+		}
 	}
 }
