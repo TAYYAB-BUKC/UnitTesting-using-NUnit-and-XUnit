@@ -195,5 +195,18 @@ namespace Bongo.Core.Tests
 			// Assert
 			Assert.That(expectedBookingId, Is.EqualTo(result.BookingId));
 		}
+
+		[Test]
+		public void BookStudyRoom_InputIsAValidRequestAndNoAvailableRoom_OutputIsBookNotInvoked()
+		{
+			// Arrange
+			availableRooms.Clear();
+
+			// Act
+			var result = studyRoomBookingService.BookStudyRoom(request);
+
+			// Assert
+			_studyRoomBookingRepository.Verify(x => x.Book(It.IsAny<StudyRoomBooking>()), Times.Never);
+		}
 	}
 }
