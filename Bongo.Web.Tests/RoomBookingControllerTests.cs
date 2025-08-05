@@ -65,5 +65,38 @@ namespace Bongo.Web.Tests
 			Assert.That(result, Is.InstanceOf<ViewResult>());
 			Assert.That((result as ViewResult).ViewData["Error"], Is.EqualTo("No Study Room available for selected date"));
 		}
+
+		[Test]
+		public void Book_InputIsAValidRequestWithRoomAvailability_OutputIsSuccessCodeWithRedirectToActionResult()
+		{
+			// Arrange
+			_studyRoomBookingService.Setup(x => x.BookStudyRoom(It.IsAny<StudyRoomBooking>()))
+									.Returns((StudyRoomBooking booking) => new StudyRoomBookingResult()
+									{
+										Code = StudyRoomBookingCode.Success,
+										FirstName = booking.FirstName,
+										LastName = booking.LastName,
+										Date = booking.Date,
+										Email = booking.Email,
+									});
+
+			// Act
+			var result = _roomBookingController.Book(new StudyRoomBooking()
+			{
+				Date = new DateTime(2025, 08, 20),
+				FirstName = "Test",
+				LastName = "1",
+				Email = "test1@test.com",
+			});
+
+			// Assert
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result, Is.InstanceOf<RedirectToActionResult>());
+			var actionResult = result as RedirectToActionResult;
+			Assert.That(actionResult.RouteValues["FirstName"], Is.EqualTo("Test"));
+			Assert.That(actionResult.RouteValues["LastName"], Is.EqualTo("1"));
+			Assert.That(actionResult.RouteValues["Email"], Is.EqualTo("test1@test.com"));
+			Assert.That(actionResult.RouteValues["Date"], Is.EqualTo(new DateTime(2025, 08, 20)));
+		}
 	}
 }
