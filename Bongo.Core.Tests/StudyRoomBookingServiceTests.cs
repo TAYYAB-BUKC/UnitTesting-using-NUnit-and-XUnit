@@ -172,5 +172,28 @@ namespace Bongo.Core.Tests
 			// Act & Assert
 			return studyRoomBookingService.BookStudyRoom(request).Code;
 		}
+
+		[TestCase(0, false)]
+		[TestCase(55, true)]
+		public void BookStudyRoom_InputIsAValidRequest_OutputIsIfRoomIsAvailableThenExpectedBookingIdMustMatch(int expectedBookingId, bool IsRoomAvailable)
+		{
+			// Arrange
+			if (!IsRoomAvailable)
+			{
+				availableRooms.Clear();
+			}
+
+			_studyRoomBookingRepository.Setup(x => x.Book(It.IsAny<StudyRoomBooking>()))
+				.Callback<StudyRoomBooking>((booking) =>
+				{
+					booking.BookingId = expectedBookingId;
+				});
+
+			// Act
+			var result = studyRoomBookingService.BookStudyRoom(request);
+
+			// Assert
+			Assert.That(expectedBookingId, Is.EqualTo(result.BookingId));
+		}
 	}
 }
