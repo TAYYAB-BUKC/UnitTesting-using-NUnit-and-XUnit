@@ -43,7 +43,7 @@ namespace Bongo.DataAccess.Tests
 			_dbContext = new ApplicationDbContext(options);
 		}
 
-		[Test]
+		[Test, Order(1)]
 		public void SaveBooking_InputIsBookingOne_OutputIsBookingAddedToDB()
 		{
 			// Arrange
@@ -65,6 +65,7 @@ namespace Bongo.DataAccess.Tests
 		}
 
 		[Test]
+		[Order(2)]
 		public void GetAllBooking_InputIsBookingOneAndBookingTwo_OutputIsGetTwoBookingsFromTheDatabase()
 		{
 			//// Arrange
@@ -91,6 +92,7 @@ namespace Bongo.DataAccess.Tests
 			// Arrange
 			List<StudyRoomBooking> expectedResults = new List<StudyRoomBooking>() { studyRoomBooking_One, studyRoomBooking_Two };
 			List<StudyRoomBooking> actualResults = new List<StudyRoomBooking>();
+			_dbContext.Database.EnsureDeleted();
 			_studyRoomBookingRepository = new StudyRoomBookingRepository(_dbContext);
 			_studyRoomBookingRepository.Book(studyRoomBooking_One);
 			_studyRoomBookingRepository.Book(studyRoomBooking_Two);
