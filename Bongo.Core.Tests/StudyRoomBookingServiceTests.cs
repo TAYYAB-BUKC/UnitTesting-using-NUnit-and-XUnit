@@ -25,9 +25,9 @@ namespace Bongo.Core.Tests
 			{
 				new StudyRoom
 				{
-				Id = 1,
-				RoomName = "Michigan",
-				RoomNumber = "001"
+					Id = 1,
+					RoomName = "Michigan",
+					RoomNumber = "001"
 				}
 			};
 
@@ -72,6 +72,31 @@ namespace Bongo.Core.Tests
 
 			// Extra Check Part 2
 			Assert.That(() => studyRoomBookingService.BookStudyRoom(null), Throws.ArgumentNullException.With.Message.EqualTo("Value cannot be null. (Parameter 'request')"));
+		}
+
+		[Test]
+		public void BookStudyRoom_InputIsAValidRequest_OutputIsRoomBooked()
+		{
+			// Arrange
+			StudyRoomBooking newBooking = new();
+			_studyRoomBookingRepository.Setup(x=>x.Book(It.IsAny<StudyRoomBooking>()))
+									   .Callback<StudyRoomBooking>((booking) =>
+									   {
+										   newBooking = booking;
+									   });
+
+			// Act
+			studyRoomBookingService.BookStudyRoom(request);
+
+			// Assert
+			_studyRoomBookingRepository.Verify(x => x.Book(It.IsAny<StudyRoomBooking>()), Times.Once);
+			Assert.That(newBooking, Is.Not.Null);
+			Assert.That(newBooking.FirstName, Is.EqualTo(request.FirstName));
+			Assert.That(newBooking.LastName, Is.EqualTo(request.LastName));
+			Assert.That(newBooking.Email, Is.EqualTo(request.Email));
+			Assert.That(newBooking.Date, Is.EqualTo(request.Date));
+			Assert.That(newBooking.StudyRoomId, Is.EqualTo(availableRooms.FirstOrDefault().Id));
+			Assert.That(newBooking.StudyRoomId, Is.EqualTo(1));
 		}
 	}
 }
