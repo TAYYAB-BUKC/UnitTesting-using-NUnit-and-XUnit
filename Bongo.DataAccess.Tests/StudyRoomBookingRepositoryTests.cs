@@ -2,6 +2,7 @@
 using Bongo.Models.Model;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bongo.DataAccess.Tests
 {
@@ -12,7 +13,7 @@ namespace Bongo.DataAccess.Tests
 		private StudyRoomBooking studyRoomBooking_Two;
 		private ApplicationDbContext _dbContext;
 		private StudyRoomBookingRepository _studyRoomBookingRepository;
-
+		private DbContextOptions<ApplicationDbContext> DbContextOptions;
 		[SetUp]
 		public void ArrangePhase()
 		{
@@ -28,7 +29,7 @@ namespace Bongo.DataAccess.Tests
 
 			studyRoomBooking_Two = new StudyRoomBooking()
 			{
-				BookingId = 1,
+				BookingId = 2,
 				Date = new DateTime(2025, 08, 30),
 				FirstName = "Test",
 				LastName = "2",
@@ -37,7 +38,7 @@ namespace Bongo.DataAccess.Tests
 			};
 
 			var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-							  .UseInMemoryDatabase("temp_Bongo132").Options;
+								   .UseInMemoryDatabase("temp_Bongo").Options;
 			
 			_dbContext = new ApplicationDbContext(options);
 		}
@@ -61,6 +62,44 @@ namespace Bongo.DataAccess.Tests
 				Assert.That(bookingFromDatabase.LastName, Is.EqualTo(studyRoomBooking_One.LastName));
 				Assert.That(bookingFromDatabase.Email, Is.EqualTo(studyRoomBooking_One.Email));
 			});
+		}
+
+		[Test]
+		public void GetAllBooking_InputIsBookingOneAndBookingTwo_OutputIsGetTwoBookingsFromTheDatabase()
+		{
+			//// Arrange
+			//List<StudyRoomBooking> expectedResults = new List<StudyRoomBooking>() { studyRoomBooking_One, studyRoomBooking_Two };
+			//List<StudyRoomBooking> actualResults = new List<StudyRoomBooking>();
+
+			//// Act
+			//using (_dbContext = new ApplicationDbContext(DbContextOptions))
+			//{
+			//	_dbContext.StudyRoomBookings.Add(studyRoomBooking_One);
+			//	_dbContext.StudyRoomBookings.Add(studyRoomBooking_Two);
+			//}
+
+			//using (_dbContext = new ApplicationDbContext(DbContextOptions))
+			//{
+			//	_studyRoomBookingRepository = new StudyRoomBookingRepository(_dbContext);
+			//	actualResults = _studyRoomBookingRepository.GetAll(null).ToList();
+			//}			
+
+			//// Assert
+			//CollectionAssert.AreEqual(expectedResults, actualResults);
+
+
+			// Arrange
+			List<StudyRoomBooking> expectedResults = new List<StudyRoomBooking>() { studyRoomBooking_One, studyRoomBooking_Two };
+			List<StudyRoomBooking> actualResults = new List<StudyRoomBooking>();
+			_studyRoomBookingRepository = new StudyRoomBookingRepository(_dbContext);
+			_studyRoomBookingRepository.Book(studyRoomBooking_One);
+			_studyRoomBookingRepository.Book(studyRoomBooking_Two);
+
+			// Act
+			actualResults = _studyRoomBookingRepository.GetAll(null).ToList();
+
+			// Assert
+			CollectionAssert.AreEqual(expectedResults.Select(x => x.BookingId), actualResults.Select(x => x.BookingId));
 		}
 	}
 }
