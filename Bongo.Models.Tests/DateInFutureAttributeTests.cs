@@ -18,5 +18,17 @@ namespace Bongo.Models.Tests
 			// Assert
 			Assert.That(isValidDate, Is.True);
 		}
+
+		[TestCase(-5, ExpectedResult = false)]
+		[TestCase(0, ExpectedResult = false)]
+		[TestCase(5, ExpectedResult = true)]
+		public bool DateValidator_InputIsDate_OutputIsTrueIfDateIsValid(int seconds)
+		{
+			// Arrange
+			DateInFutureAttribute dateInFutureAttribute = new DateInFutureAttribute();
+
+			// Act & Assert
+			return dateInFutureAttribute.IsValid(DateTime.Now.AddSeconds(seconds));
+		}
 	}
 }
