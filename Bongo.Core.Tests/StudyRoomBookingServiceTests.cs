@@ -159,5 +159,18 @@ namespace Bongo.Core.Tests
 			Assert.That(result1.Date, Is.EqualTo(request.Date));
 
 		}
+
+		[TestCase(true, ExpectedResult = StudyRoomBookingCode.Success)]
+		[TestCase(false, ExpectedResult = StudyRoomBookingCode.NoRoomAvailable)]
+		public StudyRoomBookingCode BookStudyRoom_InputIsAValidRequest_OutputIsIfRoomIsAvailableThenSuccessResultCode(bool IsRoomAvailable)
+		{
+			// Arrange
+			if (!IsRoomAvailable)
+			{
+				availableRooms.Clear();
+			}
+			// Act & Assert
+			return studyRoomBookingService.BookStudyRoom(request).Code;
+		}
 	}
 }
